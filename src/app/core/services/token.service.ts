@@ -10,7 +10,12 @@ export class TokenService {
   isAuthentication: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
-  constructor() { }
+  constructor() { 
+    const token = this.getToken();
+    if (token) {
+      this.updateToken(true);
+    }
+  }
 
   getToken(): string | null {
     return localStorage.getItem(constants.CURRENT_TOKEN);
